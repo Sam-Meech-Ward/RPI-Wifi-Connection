@@ -5,7 +5,7 @@ const util = require('util');
  * 
  * @param {A function that returns a promise that resolves to an array of network objects that look like {bssid, signalLevel, ssid}} networks 
  */
-function WifiNetworksCharacteristic(getNetworks) {
+function ReadWifiNetworksCharacteristic(getNetworks) {
   bleno.Characteristic.call(this, {
     uuid: 'c40d35b1-9bcd-401f-b5ee-8abf58dab24b',
     properties: ['read'],
@@ -20,11 +20,11 @@ function WifiNetworksCharacteristic(getNetworks) {
   this.getNetworks = getNetworks;
 }
 
-module.exports = WifiNetworksCharacteristic;
+module.exports = ReadWifiNetworksCharacteristic;
 
-util.inherits(WifiNetworksCharacteristic, bleno.Characteristic);
+util.inherits(ReadWifiNetworksCharacteristic, bleno.Characteristic);
 
-PizzaCrustCharacteristic.prototype.onReadRequest = function(offset, callback) {
+ReadWifiNetworksCharacteristic.prototype.onReadRequest = function(offset, callback) {
   if (offset) {
     callback(this.RESULT_ATTR_NOT_LONG, null);
     return;
