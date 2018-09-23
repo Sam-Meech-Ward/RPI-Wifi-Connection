@@ -34,7 +34,6 @@ ReadWifiNetworksCharacteristic.prototype.onReadRequest = function(offset, callba
     .then((networks) => {
       const bufStr = JSON.stringify(networks);
       const data = Buffer.from(bufStr, 'utf8');
-      data.writeUInt8(this.pizza.crust, 0);
       callback(this.RESULT_SUCCESS, data);
     })
     .catch((error) => {
@@ -42,4 +41,4 @@ ReadWifiNetworksCharacteristic.prototype.onReadRequest = function(offset, callba
     });
 };
 
-module.exports = PizzaCrustCharacteristic;
+module.exports = ReadWifiNetworksCharacteristic;
