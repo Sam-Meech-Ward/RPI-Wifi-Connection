@@ -8,7 +8,7 @@ const uuids = require('./uuids');
  */
 function ReadWifiNetworksCharacteristic(getNetworks) {
   bleno.Characteristic.call(this, {
-    uuid: readWifiNetworksCharacteristic,
+    uuid: uuids.readWifiNetworksCharacteristic,
     properties: ['read'],
     descriptors: [
       new bleno.Descriptor({
