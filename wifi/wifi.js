@@ -1,5 +1,6 @@
 const wifiScan = require('./wifiScan');
 const iwName = require('./iwName');
+const wifiConnect = require('./wifiConnect');
 
 function getWifiNetworks() {
     return iwName.getFirstIWName()
@@ -7,3 +8,11 @@ function getWifiNetworks() {
 }
 
 exports.getWifiNetworks = getWifiNetworks;
+
+function setWifiNetwork(ssid, password) {
+    return iwName.getFirstIWName()
+    .then((name) => {
+        return wifiConnect.connect(name, ssid, password);
+    });
+}
+exports.setWifiNetwork = setWifiNetwork;
