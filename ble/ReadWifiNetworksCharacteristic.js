@@ -1,5 +1,6 @@
 const bleno = require('bleno');
 const util = require('util');
+const uuids = require('./uuids');
 
 /**
  * 
@@ -7,7 +8,7 @@ const util = require('util');
  */
 function ReadWifiNetworksCharacteristic(getNetworks) {
   bleno.Characteristic.call(this, {
-    uuid: 'c40d35b1-9bcd-401f-b5ee-8abf58dab24b',
+    uuid: readWifiNetworksCharacteristic,
     properties: ['read'],
     descriptors: [
       new bleno.Descriptor({
@@ -35,9 +36,11 @@ ReadWifiNetworksCharacteristic.prototype.onReadRequest = function(offset, callba
       const bufStr = JSON.stringify(networks);
       const data = Buffer.from(bufStr, 'utf8');
       callback(this.RESULT_SUCCESS, data);
+      console.log("sent networks");
     })
     .catch((error) => {
       callback(this.RESULT_UNLIKELY_ERROR, Buffer.from("Couldn't get networks", 'utf8'));
+      console.log("sent error");
     });
 };
 
