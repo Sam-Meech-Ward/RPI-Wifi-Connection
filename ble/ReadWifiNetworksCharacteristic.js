@@ -25,6 +25,15 @@ module.exports = ReadWifiNetworksCharacteristic;
 
 util.inherits(ReadWifiNetworksCharacteristic, bleno.Characteristic);
 
+function shortenNetworks(networks) {
+  let networkNames = networks.map((network) => network.ssid);
+  let string;
+  while((string = JSON.stringify(networks)).length > 500) {
+    networkNames.pop();
+  }
+  return string;
+}
+
 ReadWifiNetworksCharacteristic.prototype.onReadRequest = function(offset, callback) {
   if (offset) {
     callback(this.RESULT_ATTR_NOT_LONG, null);
@@ -33,7 +42,7 @@ ReadWifiNetworksCharacteristic.prototype.onReadRequest = function(offset, callba
 
   this.getNetworks()
     .then((networks) => {
-      const bufStr = JSON.stringify(networks);
+      const bufStr = shortenNetworks(networks);
       const data = Buffer.from(bufStr, 'utf8');
       callback(this.RESULT_SUCCESS, data);
       console.log("sent networks");
