@@ -28,7 +28,7 @@ util.inherits(ReadWifiNetworksCharacteristic, bleno.Characteristic);
 function shortenNetworks(networks) {
   let networkNames = networks.map((network) => network.ssid);
   let string;
-  while((string = JSON.stringify(networks)).length > 500) {
+  while((string = JSON.stringify(networkNames)).length > 500) {
     networkNames.pop();
   }
   return string;
