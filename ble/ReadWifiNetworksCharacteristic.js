@@ -45,7 +45,7 @@ ReadWifiNetworksCharacteristic.prototype.onReadRequest = function(offset, callba
       const bufStr = shortenNetworks(networks);
       const data = Buffer.from(bufStr, 'utf8');
       callback(this.RESULT_SUCCESS, data);
-      console.log("sent networks");
+      console.log("sent networks", bufStr);
     })
     .catch((error) => {
       callback(this.RESULT_UNLIKELY_ERROR, Buffer.from("Couldn't get networks", 'utf8'));
