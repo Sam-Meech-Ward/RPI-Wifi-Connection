@@ -4,7 +4,7 @@ function start(getNetworks, connectToNetwork) {
   const WifiNetworksService = require('./WifiNetworksService');
   const wifiNetworksService = new WifiNetworksService(getNetworks);
 
-  const name = "SamsWifi";
+  const name = "Sams Wifi";
 
   bleno.on('stateChange', function(state) {
     if (state === 'poweredOn') {
