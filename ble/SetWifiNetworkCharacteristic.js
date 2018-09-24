@@ -31,6 +31,8 @@ SetWifiNetworkCharacteristic.prototype.onWriteRequest = function(data, offset, w
     return;
   }
 
-  console.log("data", data);
+  const networkData = JSON.parse(data.toString());
+  console.log("Set wifi:", networkData);
+  this.setNetwork({networkData});
   callback(this.RESULT_SUCCESS);
 };

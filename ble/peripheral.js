@@ -2,7 +2,7 @@ function start(getNetworks, connectToNetwork) {
 
   const bleno = require('bleno');
   const WifiNetworksService = require('./WifiNetworksService');
-  const wifiNetworksService = new WifiNetworksService(getNetworks);
+  const wifiNetworksService = new WifiNetworksService(getNetworks, connectToNetwork);
 
   const name = "Sams Wifi";
 
